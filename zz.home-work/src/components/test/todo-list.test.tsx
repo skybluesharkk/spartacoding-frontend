@@ -1,5 +1,3 @@
-// zz.home-work/src/components/test/todo-list.test.tsx
-
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { TodoList } from '../todo-list'
@@ -31,16 +29,12 @@ describe('TodoList 컴포넌트 단위 + 스냅샷 테스트', () => {
   it('completed=true인 경우, 최상위 ListItemText 엘리먼트에 text-decoration: line-through가 적용되어야 한다', () => {
     render(<TodoList todos={sampleTodos} setTodos={vi.fn()} />)
 
-    // 1) “할 일 2” 텍스트 노드를 가져온다
     const completedTextNode = screen.getByText(/할 일 2/)
 
-    // 2) 최상위 div 엘리먼트를 찾아서 wrapperElement에 할당
     const wrapperElement = completedTextNode.closest('div')
 
-    // 3) null이 아닌지 먼저 검증
     expect(wrapperElement).not.toBeNull()
 
-    // 4) null이 아님을 확인한 뒤 스타일을 검사
     if (wrapperElement) {
       expect(wrapperElement).toHaveStyle({ textDecoration: 'line-through' })
     }
